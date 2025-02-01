@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transaction extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'code',
         'boarding_house_id',
@@ -15,6 +18,7 @@ class Transaction extends Model
         'phone_number',
         'payment_method',
         'payment_status',
+        'start_date',
         'duration',
         'total_amount',
         'transaction_date',
@@ -22,10 +26,10 @@ class Transaction extends Model
 
     public function boardingHouse()
     {
-        $this->belongsTo(BoardingHouse::class);
+        return $this->belongsTo(BoardingHouse::class);
     }
     public function room()
     {
-        $this->belongsTo(Room::class);
+        return $this->belongsTo(Room::class);
     }
 }

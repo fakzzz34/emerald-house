@@ -18,7 +18,9 @@ class BoardingHouseResource extends Resource
 {
     protected static ?string $model = BoardingHouse::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-home-modern';
+
+    protected static ?string $navigationGroup = 'Boarding House Management';
 
     public static function form(Form $form): Form
     {
@@ -119,13 +121,21 @@ class BoardingHouseResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('city.name',),
+                Tables\Columns\TextColumn::make('category.name',),
+                Tables\Columns\TextColumn::make('price')
+                    ->formatStateUsing(fn(string $state): string => number_format($state, 0, ',', '.'))
+                    ->prefix('Rp'),
+                Tables\Columns\ImageColumn::make('thumbnail'),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
