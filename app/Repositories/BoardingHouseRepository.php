@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Interfaces\BoardingHouseRepositoryInterface;
 use App\Models\BoardingHouse;
-use Filament\Forms\Components\Builder;
+use Illuminate\Database\Eloquent\Builder;
 
 class BoardingHouseRepository implements BoardingHouseRepositoryInterface
 {
@@ -45,7 +45,7 @@ class BoardingHouseRepository implements BoardingHouseRepositoryInterface
         })->get();
     }
 
-    public function getBoardingHousesByCategory($slug)
+    public function getBoardingHousesByCategorySlug($slug)
     {
         return BoardingHouse::whereHas('category', function (Builder $query) use ($slug) {
             $query->where('slug', $slug);

@@ -10,7 +10,7 @@ interface BoardingHouseRepositoryInterface
 
     public function getBoardingHousesByCitySlug($slug);
 
-    public function getBoardingHousesByCategory($slug);
+    public function getBoardingHousesByCategorySlug($slug);
 
     public function getBoardingHousesBySlug($slug);
 }
